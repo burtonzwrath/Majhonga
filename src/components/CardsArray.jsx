@@ -5,6 +5,7 @@ function CardsArray() {
 
 // ----------------------STYLES-------------------------
   let wrapper = {
+    backgroundColor:"grey",
     width: "100%",
     height: "100vh",
     display: "flex",
@@ -91,7 +92,7 @@ function CardsArray() {
       e.target.boxShadow = "3px";
       e.target.style.borderRadius = "8px";
       e.target.style.border = "2px solid blue";
-      if (firstCard.index === secondCard.index) {
+      if (firstCard.index === secondCard.index && firstCard.id!==secondCard.id) {
         second.style.opacity = "1";
         first.style.opacity = "1";
         e.target.style.border = "2px solid blue";

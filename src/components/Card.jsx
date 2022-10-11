@@ -5,11 +5,14 @@ function Card({ item, click, ind, visible }) {
         opacity: visible === true ? "1" : "0",
         height: "100%",
         width: "100%",
-        border: "none",
+
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
         boxSizing: "content-box",
+          backgroundColor:"white",
+          border: "2px solid",
+          borderRadius: "8px",
       }}
       id={ind}
       className={item}
