@@ -1,5 +1,6 @@
 import Card from "./Card";
 import { useState, useMemo } from "react";
+import Rules from "./Rules";
 
 function CardsArray() {
 
@@ -114,6 +115,7 @@ function CardsArray() {
 // -------------------------------------------------------
   return (
     <div style={wrapper}>
+      <Rules/>
       <button
         style={button}
         onClick={(e) => {
