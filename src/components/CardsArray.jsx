@@ -77,7 +77,7 @@ function CardsArray() {
       e.target.style.opacity = "1";
       e.target.style.border = "2px solid blue";
       e.target.style.borderRadius = "8px";
-    } else {
+    } else if(!flag && visible===false) {
       secondCard = {
         ...secondCard,
         id: e.target.id,
