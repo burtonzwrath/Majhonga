@@ -66,18 +66,14 @@ function CardsArray() {
   }
 
   function click(e) {
-    if (flag) {
+    if (flag && visible===false) {
       firstCard = {
         ...firstCard,
         id: e.target.id,
         index: e.target.className,
       };
       first = document.getElementById(firstCard.id);
-      secondCard = {
-        ...secondCard,
-        id: "",
-        index: "",
-      };
+
       e.target.style.opacity = "1";
       e.target.style.border = "2px solid blue";
       e.target.style.borderRadius = "8px";
@@ -95,7 +91,6 @@ function CardsArray() {
       if (firstCard.index === secondCard.index && firstCard.id!==secondCard.id) {
         second.style.opacity = "1";
         first.style.opacity = "1";
-        e.target.style.border = "2px solid blue";
         e.target.style.border = "2px solid blue";
       } else {
         second.style.opacity = "0";
