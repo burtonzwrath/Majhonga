@@ -1,39 +1,11 @@
 import Card from "./Card";
 import { useState, useMemo } from "react";
 import Rules from "./Rules";
+import { styles } from "../styles/styles";
 
 function CardsArray() {
-
-// ----------------------STYLES-------------------------
-  let wrapper = {
-    backgroundColor:"grey",
-    width: "100%",
-    height: "100vh",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-  };
-  let gridBox = {
-    display: "grid",
-    gridTemplateColumns: "repeat(8, 1fr)",
-    gridGap: "10px",
-    fontSize: "30px",
-  };
-  let cardBox = {
-    border: "2px solid",
-    borderRadius: "8px",
-    width: "80px",
-    height: "104px",
-
-  };
-  let button = {
-    position: "absolute",
-    margin: "0 auto",
-    bottom: "5%",
-    width: "60px",
-  };
-// ----------------------Constants-------------------------
-  const [visible, setVisibile] = useState(true);
+  // ----------------------Constants-------------------------
+  const [visible, setVisible] = useState(true);
   let firstCard = {
     id: "",
     index: "",
@@ -46,7 +18,7 @@ function CardsArray() {
   let flag = true;
   let first;
   let second;
-// ----------------------Create array with random numbers-------------------------
+  // ----------------------Create array with random numbers-------------------------
 
   function randomValue() {
     const randomArray = Array.from({ length: 30 }, () =>
@@ -54,20 +26,20 @@ function CardsArray() {
     );
     const uniqueArray = [...new Set(randomArray)];
     uniqueArray.length = 16;
-    const ArrayOfCards = uniqueArray.concat(uniqueArray);
-    ArrayOfCards.sort(() => Math.random() - 0.5);
-    return ArrayOfCards;
+    const arrayOfCards = uniqueArray.concat(uniqueArray);
+    arrayOfCards.sort(() => Math.random() - 0.5);
+    return arrayOfCards;
   }
-// ----------------------Memorization array -------------------------
+  // ----------------------Memorization array -------------------------
   const randomArray = useMemo(() => randomValue(), []);
 
-// ----------------------Actions functions-------------------------
+  // ----------------------Actions functions-------------------------
   function startGame() {
-    setVisibile(false);
+    setVisible(false);
   }
 
   function click(e) {
-    if (flag && visible===false) {
+    if (flag && visible === false) {
       firstCard = {
         ...firstCard,
         id: e.target.id,
@@ -78,7 +50,7 @@ function CardsArray() {
       e.target.style.opacity = "1";
       e.target.style.border = "2px solid blue";
       e.target.style.borderRadius = "8px";
-    } else if(!flag && visible===false) {
+    } else if (!flag && visible === false) {
       secondCard = {
         ...secondCard,
         id: e.target.id,
@@ -89,7 +61,10 @@ function CardsArray() {
       e.target.boxShadow = "3px";
       e.target.style.borderRadius = "8px";
       e.target.style.border = "2px solid blue";
-      if (firstCard.index === secondCard.index && firstCard.id!==secondCard.id) {
+      if (
+        firstCard.index === secondCard.index &&
+        firstCard.id !== secondCard.id
+      ) {
         second.style.opacity = "1";
         first.style.opacity = "1";
         e.target.style.border = "2px solid blue";
@@ -100,7 +75,7 @@ function CardsArray() {
     }
     flag = !flag;
   }
-// ----------------------Hovers-------------------------
+  // ----------------------Hovers-------------------------
 
   function onMouseEnter(e) {
     e.currentTarget.style.border = "2px solid blue";
@@ -112,25 +87,25 @@ function CardsArray() {
     e.currentTarget.style.borderRadius = "8px";
     e.currentTarget.style.boxShadow = "none";
   }
-// -------------------------------------------------------
+  // -------------------------------------------------------
   return (
-    <div style={wrapper}>
-      <Rules/>
+    <div style={styles.wrapper}>
+      <Rules />
       <button
-        style={button}
+        style={styles.button}
         onClick={(e) => {
           startGame();
         }}
       >
         Start
       </button>
-      <div style={gridBox}>
+      <div style={styles.gridBox}>
         {randomArray.map((item, index) => (
           <div
             onMouseEnter={(e) => onMouseEnter(e)}
             onMouseLeave={(e) => onMouseLeave(e)}
             className="cardWrapper"
-            style={cardBox}
+            style={styles.cardBox}
           >
             <Card visible={visible} ind={index} item={item} click={click} />
           </div>
