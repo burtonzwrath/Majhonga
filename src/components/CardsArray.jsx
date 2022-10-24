@@ -29,7 +29,7 @@ function CardsArray() {
   //-----------------------Creating refs------------------------------
 
   refs.current = randomArray.map(
-    (element, i) => refs?.current[i] ?? createRef()
+    (element, i) => refs.current[i] ?? createRef()
   );
 
   // ----------------------Actions functions-------------------------

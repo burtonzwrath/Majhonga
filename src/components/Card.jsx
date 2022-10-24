@@ -12,7 +12,7 @@ function Card({ item, ind, refs, flag, setFlag, firstCard, setFirstCard }) {
       e.target.classList.remove("invisible");
       console.log(e.target);
 
-      if (refs.current[e.target.dataset.id].current.id !== firstCard.index) {
+      if (refs?.current[e.target.dataset.id]?.current.id !== firstCard.index) {
         setTimeout(() => {
           refs.current[firstCard.id].current.classList.add("invisible");
           refs.current[e.target.id].current.classList.add("invisible");
