@@ -2,14 +2,12 @@ import Card from "./Card";
 import { useMemo, useRef, createRef, useState, useEffect } from "react";
 import Rules from "./Rules";
 import "../styles/styles.css";
-import "../styles/cardStyle.css";
 
 function CardsArray() {
   // ----------------------Constants-------------------------
 
   const [flag, setFlag] = useState(true);
   const [firstCard, setFirstCard] = useState();
-
 
   const refs = useRef([]);
 
@@ -36,22 +34,26 @@ function CardsArray() {
 
   // ----------------------Actions functions-------------------------
 
-  function startGame() {
+  function hideCards() {
     refs.current.forEach((item) => item.current.classList.add("invisible"));
+  }
+  function showCards() {
+    refs.current.forEach((item) => item.current.classList.remove("invisible"));
   }
 
   // -------------------------------------------------------
   return (
     <div className="wrapper">
       <Rules />
-      <button
-        className="button"
-        onClick={(e) => {
-          startGame();
-        }}
-      >
-        Start
-      </button>
+      <div className="buttons_wrapper">
+        <button className="showCards" onClick={() => showCards()}>
+          Show cards
+        </button>
+        <button className="hideCards" onClick={() => hideCards()}>
+          Hide cards
+        </button>
+      </div>
+
       <div className="gridBox">
         {randomArray.map((item, index) => (
           <div key={index} className="cardBox">

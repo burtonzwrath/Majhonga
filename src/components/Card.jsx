@@ -1,12 +1,5 @@
-function Card({
-  item,
-  ind,
-  refs,
-  flag,
-  setFlag,
-  firstCard,
-  setFirstCard,
-}) {
+
+function Card({ item, ind, refs, flag, setFlag, firstCard, setFirstCard }) {
 
   function click(e) {
     if (flag && e.target.classList.contains("invisible")) {
@@ -23,7 +16,7 @@ function Card({
         setTimeout(() => {
           refs.current[firstCard.id].current.classList.add("invisible");
           refs.current[e.target.id].current.classList.add("invisible");
-        }, 1000);
+        }, 700);
       }
       setFirstCard("");
       setFlag(!flag);
@@ -35,7 +28,7 @@ function Card({
       ref={refs.current[ind]}
       id={ind}
       data-id={item}
-      className={`card `}
+      className="card"
       onClick={(e) => click(e)}
     >
       {item}
