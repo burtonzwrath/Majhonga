@@ -1,20 +1,41 @@
-function Card({ item, click, ind, visible }) {
+function Card({
+  item,
+  ind,
+  refs,
+  flag,
+  setFlag,
+  firstCard,
+  setFirstCard,
+}) {
+
+  function click(e) {
+    if (flag && e.target.classList.contains("invisible")) {
+      setFirstCard({ id: e.target.id, index: e.target.dataset.id });
+      e.target.classList.remove("invisible");
+      setFlag(!flag);
+    }
+
+    if (!flag && e.target.classList.contains("invisible")) {
+      e.target.classList.remove("invisible");
+      console.log(e.target);
+
+      if (refs.current[e.target.dataset.id].current.id !== firstCard.index) {
+        setTimeout(() => {
+          refs.current[firstCard.id].current.classList.add("invisible");
+          refs.current[e.target.id].current.classList.add("invisible");
+        }, 1000);
+      }
+      setFirstCard("");
+      setFlag(!flag);
+    }
+  }
+
   return (
     <div
-      style={{
-        opacity: visible === true ? "1" : "0",
-        height: "100%",
-        width: "100%",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        boxSizing: "content-box",
-        backgroundColor: "white",
-        border: "2px solid",
-        borderRadius: "8px",
-      }}
+      ref={refs.current[ind]}
       id={ind}
-      className={item}
+      data-id={item}
+      className={`card `}
       onClick={(e) => click(e)}
     >
       {item}
